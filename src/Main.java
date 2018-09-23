@@ -1,13 +1,14 @@
 import java.util.ArrayList;
-import java.lang.Math;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.Scanner;
 
+import screens.MyScreen;
 
-public class Main {
 
+public class Main{
+
+	private static MyScreen screen;		
+	
     public static int check_condition(int current, int input, ArrayList list) {
         if (input == 5 || input == 7) {  //if input is +5 (input==1) or +7 (input==2)
             int test_value = current + input;
@@ -39,6 +40,9 @@ public class Main {
     }
 
     public static void main(String[] args) {
+    	
+    	screen = new MyScreen();
+    	
         int current_value;
         ArrayList<Integer> usedValues_list = new ArrayList<Integer>(); //store the previously used numbers during a game
 
@@ -111,5 +115,6 @@ public class Main {
                 }
             }
     }
+	
 }
 
