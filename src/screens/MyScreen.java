@@ -2,6 +2,8 @@ package screens;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import main.Main;
+
 public class MyScreen extends Screen{
 	
 	public MyScreen() {
@@ -13,7 +15,7 @@ public class MyScreen extends Screen{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				super.mouseClicked(e);
-				
+				Main.check(5);
 			}
 		});
 		
@@ -21,7 +23,7 @@ public class MyScreen extends Screen{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				super.mouseClicked(e);
-				
+				Main.check(7);
 			}
 		});
 		
@@ -29,7 +31,7 @@ public class MyScreen extends Screen{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				super.mouseClicked(e);
-				
+				Main.check(1);
 			}
 		});
 	}
