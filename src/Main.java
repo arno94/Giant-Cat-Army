@@ -23,7 +23,13 @@ public class Main {
         } else if (input == 1) { //if input is sqrt (input==3)
             double test_value = Math.sqrt(current);
             if ((test_value == Math.floor(test_value)) && !Double.isInfinite(test_value)) {
-                return (int) Math.floor(test_value); //return the the value in int type after calculate sqrt
+                if (list.contains((int)Math.floor(test_value)))
+                {
+                    return -1;
+                }
+                else{
+                    return (int) Math.floor(test_value); //return the the value in int type after calculate sqrt
+                }
             } else {
                 return -3; //if a number is not int after calculate the square return -3
             }
@@ -32,7 +38,6 @@ public class Main {
         }
     }
 
-
     public static void main(String[] args) {
         int current_value;
         ArrayList<Integer> usedValues_list = new ArrayList<Integer>(); //store the previously used numbers during a game
@@ -40,15 +45,14 @@ public class Main {
         current_value = 0;
         usedValues_list.add(current_value);
 
-        boolean[] goal_booleanList = {false, false, false};
         //list of booleans of a previously reached goal numbers (2,10,12)
-        int[] goal_intList = {2, 10, 12}; //list with goal elements
+        boolean[] goal_booleanList = {false, false, false};
+
+        //int[] goal_intList = {2, 10, 12};
 
         //list of  of a previously reached goal numbers (2,10,12)
-        System.out.println(Arrays.asList(goal_intList).contains("2"));
-        
-        ArrayList<Integer> testValues_list = new ArrayList<>();
-        
+        ArrayList<Integer> goal_intList = new ArrayList<Integer>(Arrays.asList(2,10,12));
+
         //scanner to read input
         Scanner scanner = new Scanner(System.in);
         while(scanner.hasNext()) {
@@ -57,13 +61,13 @@ public class Main {
 
        // for (int i : testValues_list) { //run through a test list with finite number of inputs
             int value = check_condition(current_value, inputNumber, usedValues_list); //check if it's prev. used or >60 or non int
-            System.out.println("after check:"+value);
+            //System.out.println("after check:"+value);
             if (value >= 0) { //if it's correct after checking conditions
                 current_value = value;
                 usedValues_list.add(current_value);
-                if (Arrays.asList(goal_intList).contains(current_value) == true) {
+                if (goal_intList.contains(current_value) == true) {
                     System.out.println("target");
-                    int index = Arrays.asList(goal_intList).indexOf(current_value);
+                    int index = goal_intList.indexOf(current_value);
                     switch (index) {
                         case 0:
                             goal_booleanList[index] = true;
@@ -106,7 +110,6 @@ public class Main {
                     return;
                 }
             }
-        //}
     }
-    }
+}
 
