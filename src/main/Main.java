@@ -1,13 +1,21 @@
+package main;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 import screens.MyScreen;
 
-
 public class Main{
 
 	private static MyScreen screen;		
+	
+	private static int current_value;
+	
+	private static ArrayList<Integer> usedValues_list;
+	
+	private static boolean[] goal_booleanList = {false, false, false};
+	
+	private static ArrayList<Integer> goal_intList;
 	
     public static int check_condition(int current, int input, ArrayList list) {
         if (input == 5 || input == 7) {  //if input is +5 (input==1) or +7 (input==2)
@@ -38,29 +46,9 @@ public class Main{
             return -4; //incorrect inputs
         }
     }
-
-    public static void main(String[] args) {
-    	
-    	screen = new MyScreen();
-    	
-        int current_value;
-        ArrayList<Integer> usedValues_list = new ArrayList<Integer>(); //store the previously used numbers during a game
-
-        current_value = 0;
-        usedValues_list.add(current_value);
-
-        //list of booleans of a previously reached goal numbers (2,10,12)
-        boolean[] goal_booleanList = {false, false, false};
-
-        //int[] goal_intList = {2, 10, 12};
-
-        //list of  of a previously reached goal numbers (2,10,12)
-        ArrayList<Integer> goal_intList = new ArrayList<Integer>(Arrays.asList(2,10,12));
-
-        //scanner to read input
-        Scanner scanner = new Scanner(System.in);
-        while(scanner.hasNext()) {
-        	int inputNumber = Integer.parseInt(scanner.nextLine());       
+    
+    public static void check(int number) {
+    	int inputNumber = number;
         //ArrayList<Integer> testValues_list = new ArrayList<>(Arrays.asList(7,7,7,5,5,5,1,5,5,1,1)); //test object of random input 5=+5, 7=+q, 1=sqrt
 
        // for (int i : testValues_list) { //run through a test list with finite number of inputs
@@ -111,9 +99,26 @@ public class Main{
                             break;
                     }
                     System.out.println("Gave over");
+                    // exit on game over --temp
+                    System.exit(0);
                     return;
                 }
-            }
+    }
+    
+    public static void main(String[] args) {
+    	
+    	screen = new MyScreen();
+    	        
+        usedValues_list = new ArrayList<Integer>(); //store the previously used numbers during a game
+
+        current_value = 0;
+        usedValues_list.add(current_value);
+
+        //int[] goal_intList = {2, 10, 12};
+
+        //list of  of a previously reached goal numbers (2,10,14)
+        goal_intList = new ArrayList<Integer>(Arrays.asList(2,10,14));
+        
     }
 	
 }
