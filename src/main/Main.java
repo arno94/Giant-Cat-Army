@@ -1,8 +1,11 @@
 package main;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import helper.StringHelper;
+import screens.MainMenu;
 import screens.MyScreen;
 
 public class Main{
@@ -49,6 +52,7 @@ public class Main{
     
     public static void check(int number) {
     	int inputNumber = number;
+    	screen.setCurrentValueColor(Color.WHITE);
         //ArrayList<Integer> testValues_list = new ArrayList<>(Arrays.asList(7,7,7,5,5,5,1,5,5,1,1)); //test object of random input 5=+5, 7=+q, 1=sqrt
 
        // for (int i : testValues_list) { //run through a test list with finite number of inputs
@@ -57,57 +61,70 @@ public class Main{
             if (value >= 0) { //if it's correct after checking conditions
                 current_value = value;
                 usedValues_list.add(current_value);
+                screen.setUsedValues(usedValues_list);
                 if (goal_intList.contains(current_value) == true) {
                     System.out.println("target");
                     int index = goal_intList.indexOf(current_value);
+                    screen.setCurrentValueColor(Color.GREEN);
                     switch (index) {
-                        case 0:
+                        case 0:                        
                             goal_booleanList[index] = true;
+                            screen.goalReached(1);
                             System.out.println("first reached");
                             break;
                         case 1:
                             if (goal_booleanList[index - 1] == true) {
                                 goal_booleanList[index] = true;
+                                screen.goalReached(2);
                                 System.out.println("second reached");
                             }
                             ;
                             break;
                         case 2:
+                        	if(goal_booleanList[index - 1] == true && goal_booleanList[index -2] == true) {
+                        		goal_booleanList[index] = true;
+                        		screen.setEndQuote(Color.GREEN, StringHelper.win);
+                        	}
+                        	screen.goalReached(3);
                             System.out.println("third reached");
-                            break;
-                        default:
                             break;
                     }
                 }
                 System.out.println("input:"+inputNumber);
+                screen.setCurrentValue(current_value);                
                 System.out.println("current:"+current_value);
                 System.out.println(usedValues_list);
                 System.out.println("---");
                 } else { //print 'game over'
                     System.out.println("current:"+current_value);
+                    screen.setCurrentValueColor(Color.RED);
                     switch (value) {
-                        case -1:
+                        case -1:                        	
                             System.out.println("previously used");
+                            screen.setEndQuote(Color.RED, StringHelper.lose_repeating_number);
                             break;
                         case -2:
                             System.out.println("number >60");
+                            screen.setEndQuote(Color.RED, StringHelper.lose_bigger_than_60);
                             break;
                         case -3:
                             System.out.println("non whole after sqrt");
+                            screen.setEndQuote(Color.RED, StringHelper.lose_non_whole_number);
                             break;
                         default:
                             break;
                     }
                     System.out.println("Gave over");
                     // exit on game over --temp
-                    System.exit(0);
+                   // System.exit(0);
                     return;
                 }
     }
     
     public static void main(String[] args) {
     	
-    	screen = new MyScreen();
+    	//screen = new MyScreen();
+    	MainMenu menu = new MainMenu();
     	        
         usedValues_list = new ArrayList<Integer>(); //store the previously used numbers during a game
 
@@ -119,6 +136,10 @@ public class Main{
         //list of  of a previously reached goal numbers (2,10,14)
         goal_intList = new ArrayList<Integer>(Arrays.asList(2,10,14));
         
+    }
+    
+    public static void createScreen() {
+    	screen = new MyScreen();
     }
 	
 }
