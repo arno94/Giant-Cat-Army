@@ -37,6 +37,8 @@ public class Screen {
 	protected JLabel lbButton7;
 	protected JLabel lbButtonSqrt;	
 	
+	protected JLabel lbButtonRestart;
+	
 	protected JLabel lbGoal1;
 	protected JLabel lbGoal2;
 	protected JLabel lbGoal3;
@@ -86,7 +88,7 @@ public class Screen {
 				
 		ImagePanel panel = new ImagePanel(new ImageIcon("images/bg.png").getImage(), new Dimension(frame.getWidth(), frame.getHeight()));
 		
-		frame.getContentPane().add(panel);		
+		frame.getContentPane().add(panel);				
 		
 		JLabel lbGameName = new JLabel(new ImageIcon("images/app_name.png"));		
 		lbGameName.setLocation(0, 10);
@@ -95,6 +97,11 @@ public class Screen {
 		lbGameName.setVerticalAlignment(SwingConstants.TOP);
 		panel.add(lbGameName);
 		
+		lbButtonRestart = new JLabel(new ImageIcon("images/buttons/restart.png"));		
+		lbButtonRestart.setLocation(10, HEIGHT / 6);
+		lbButtonRestart.setSize(200, 200);
+		panel.add(lbButtonRestart);
+		
 		lbUsedValues = new JLabel("", SwingConstants.CENTER);
 		lbUsedValues.setForeground(Color.WHITE);
 		lbUsedValues.setFont(new Font("Tahoma", Font.BOLD, 24));
@@ -102,7 +109,6 @@ public class Screen {
 		
 		lbUsedValues.setSize(WIDTH - 20, 150);
 		panel.add(lbUsedValues);
-		
 		
 		Box horizontalBoxCurrentValue = Box.createHorizontalBox();		
 		horizontalBoxCurrentValue.setBounds(10, HEIGHT/2, WIDTH - 20, 150);
