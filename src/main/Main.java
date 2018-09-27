@@ -2,12 +2,10 @@ package main;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 
 import helper.StringHelper;
 import screens.MainMenu;
 import screens.MyScreen;
-import screens.Screen;
 
 public class Main{
 
