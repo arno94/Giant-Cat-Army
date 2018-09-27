@@ -14,28 +14,54 @@ public class MyScreen extends Screen{
 		init();
 	}
 	
+	public void reset() {
+		
+		lbUsedValues.setText("");
+		lbEndQuote.setText("");
+		
+		setCurrentValue(0);
+		setCurrentValueColor(Color.WHITE);
+		
+		lbGoal1.setIcon(new ImageIcon("images/goals/goal2_.png"));
+		lbGoal2.setIcon(new ImageIcon("images/goals/goal10_.png"));
+		lbGoal3.setIcon(new ImageIcon("images/goals/goal14_.png"));
+	}
+	
 	private void init() {
 		lbButton5.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				super.mouseClicked(e);
+			public void mouseClicked(MouseEvent e) {				
 				Main.check(5);
 			}
 		});
 		
 		lbButton7.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				super.mouseClicked(e);
+			public void mouseClicked(MouseEvent e) {				
 				Main.check(7);
 			}
 		});
 		
 		lbButtonSqrt.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				super.mouseClicked(e);
+			public void mouseClicked(MouseEvent e) {				
 				Main.check(1);
+			}
+		});
+		
+		lbButtonRestart.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {				
+				reset();
+				Main.restart();				
+			}
+			@Override
+			public void mousePressed(MouseEvent e) {
+				lbButtonRestart.setIcon(new ImageIcon("images/buttons/restart_click.png"));
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				lbButtonRestart.setIcon(new ImageIcon("images/buttons/restart.png"));
 			}
 		});
 	}

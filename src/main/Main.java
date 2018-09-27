@@ -7,6 +7,7 @@ import java.util.Scanner;
 import helper.StringHelper;
 import screens.MainMenu;
 import screens.MyScreen;
+import screens.Screen;
 
 public class Main{
 
@@ -19,6 +20,14 @@ public class Main{
 	private static boolean[] goal_booleanList = {false, false, false};
 	
 	private static ArrayList<Integer> goal_intList;
+	
+	public static void restart() {
+		goal_booleanList = new boolean[] { false, false, false};
+		usedValues_list = new ArrayList<>();
+		usedValues_list.add(0);
+		current_value = 0;					
+		goal_intList = new ArrayList<Integer>(Arrays.asList(2,10,14));
+	}
 	
     public static int check_condition(int current, int input, ArrayList list) {
         if (input == 5 || input == 7) {  //if input is +5 (input==1) or +7 (input==2)
